@@ -6,199 +6,141 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Where's Lynnzee? 💕</title>
 <style>
-  * { box-sizing: border-box; }
-
-  body {
-    margin: 0;
-    background: #fff6fa;
-    color: #493747;
-    font-family: Arial, sans-serif;
-  }
-
-  main {
-    max-width: 950px;
-    margin: 35px auto;
-    padding: 20px;
-  }
-
-  h1 {
-    text-align: center;
-    color: #c83c82;
-    font-size: 34px;
-    margin-bottom: 8px;
-  }
-
-  .subtitle {
-    text-align: center;
-    color: #806b79;
-    margin-bottom: 25px;
-  }
-
-  .panel {
-    background: white;
-    padding: 22px;
-    border-radius: 22px;
-    box-shadow: 0 6px 25px #d68aab24;
-  }
-
-  .toolbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 20px;
-  }
-
-  .toolbar h2 {
-    margin: 0;
-    text-align: center;
-    font-size: 22px;
-  }
-
-  button {
-    background: #f8d5e5;
-    border: 0;
-    border-radius: 12px;
-    padding: 11px 15px;
-    cursor: pointer;
-    color: #743b59;
-    font-weight: bold;
-  }
-
-  .legend {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 12px;
-    margin-bottom: 22px;
-    font-size: 13px;
-  }
-
-  .legend span {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-  }
-
-  .dot {
-    width: 13px;
-    height: 13px;
-    border-radius: 4px;
-    display: inline-block;
-  }
-
-  .calendar {
-    display: grid;
-    grid-template-columns: repeat(7, minmax(0, 1fr));
-    gap: 6px;
-  }
-
-  .weekday {
-    text-align: center;
-    font-size: 12px;
-    font-weight: bold;
-    padding: 8px 0;
-    color: #896e7f;
-  }
-
-  .day {
-    min-height: 90px;
-    border-radius: 10px;
-    background: #f8f5f7;
-    padding: 8px;
-    font-size: 14px;
-    overflow: hidden;
-  }
-
-  .day.empty {
-    background: transparent;
-  }
-
-  .day.florida {
-    background: #f7b5d3;
-  }
-
-  .day.iowa {
-    background: #ffd0a2;
-  }
-
-  .day.travel {
-    background: #d6baf4;
-  }
-
-  .number {
-    font-weight: bold;
-    margin-bottom: 9px;
-  }
-
-  .note {
-    font-size: 11px;
-    line-height: 1.35;
-  }
-
-  .status {
-    display: inline-block;
-    margin-top: 6px;
-    border-radius: 5px;
-    padding: 3px 5px;
-    font-size: 10px;
-    font-weight: bold;
-  }
-
-  .available {
-    background: #a7e8b0;
-  }
-
-  .busy {
-    background: #f5a3a3;
-  }
-
-  .footnote {
-    text-align: center;
-    font-size: 12px;
-    color: #907f8b;
-    margin-top: 20px;
-  }
-
-  @media (max-width: 600px) {
-    main {
-      margin: 10px auto;
-      padding: 10px;
-    }
-
-    .panel {
-      padding: 10px;
-    }
-
-    h1 {
-      font-size: 28px;
-    }
-
-    .calendar {
-      gap: 3px;
-    }
-
-    .day {
-      min-height: 72px;
-      padding: 4px;
-    }
-
-    .number {
-      font-size: 12px;
-    }
-
-    .note {
-      font-size: 9px;
-      overflow-wrap: anywhere;
-    }
-
-    .weekday {
-      font-size: 10px;
-    }
-  }
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: #fff6fa;
+  color: #493747;
+  font-family: Arial, sans-serif;
+}
+main {
+  max-width: 950px;
+  margin: 35px auto;
+  padding: 20px;
+}
+h1 {
+  text-align: center;
+  color: #c83c82;
+  font-size: 34px;
+  margin-bottom: 8px;
+}
+.subtitle {
+  text-align: center;
+  color: #806b79;
+  margin-bottom: 25px;
+}
+.panel {
+  background: white;
+  padding: 22px;
+  border-radius: 22px;
+  box-shadow: 0 6px 25px #d68aab24;
+}
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.toolbar h2 {
+  margin: 0;
+  text-align: center;
+  font-size: 22px;
+}
+button {
+  background: #f8d5e5;
+  border: 0;
+  border-radius: 12px;
+  padding: 11px 15px;
+  cursor: pointer;
+  color: #743b59;
+  font-weight: bold;
+}
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 22px;
+  font-size: 13px;
+}
+.legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.dot {
+  width: 13px;
+  height: 13px;
+  border-radius: 4px;
+  display: inline-block;
+}
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 6px;
+}
+.weekday {
+  text-align: center;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 8px 0;
+  color: #896e7f;
+}
+.day {
+  min-height: 90px;
+  border-radius: 10px;
+  background: #f8f5f7;
+  padding: 8px;
+  font-size: 14px;
+  overflow: hidden;
+}
+.day.empty { background: transparent; }
+.day.florida { background: #f7b5d3; }
+.day.iowa { background: #ffd0a2; }
+.day.travel { background: #d6baf4; }
+.number {
+  font-weight: bold;
+  margin-bottom: 9px;
+}
+.note {
+  font-size: 11px;
+  line-height: 1.35;
+}
+.status {
+  display: inline-block;
+  margin-top: 6px;
+  border-radius: 5px;
+  padding: 3px 5px;
+  font-size: 10px;
+  font-weight: bold;
+}
+.available { background: #a7e8b0; }
+.busy { background: #f5a3a3; }
+.footnote {
+  text-align: center;
+  font-size: 12px;
+  color: #907f8b;
+  margin-top: 20px;
+}
+.sync-status {
+  text-align: center;
+  font-size: 12px;
+  color: #806b79;
+  margin: 0 0 14px;
+}
+@media(max-width:600px) {
+  main { margin: 10px auto; padding: 10px; }
+  .panel { padding: 10px; }
+  h1 { font-size: 28px; }
+  .calendar { gap: 3px; }
+  .day { min-height: 72px; padding: 4px; }
+  .number { font-size: 12px; }
+  .note { font-size: 9px; overflow-wrap: anywhere; }
+  .weekday { font-size: 10px; }
+}
 </style>
 </head>
-
 <body>
 <main>
   <h1>Where's Lynnzee? 💕</h1>
@@ -214,28 +156,14 @@
     </div>
 
     <div class="legend">
-      <span>
-        <i class="dot" style="background:#f7b5d3"></i>
-        Florida
-      </span>
-      <span>
-        <i class="dot" style="background:#ffd0a2"></i>
-        Iowa
-      </span>
-      <span>
-        <i class="dot" style="background:#d6baf4"></i>
-        Traveling
-      </span>
-      <span>
-        <i class="dot" style="background:#a7e8b0"></i>
-        Available
-      </span>
-      <span>
-        <i class="dot" style="background:#f5a3a3"></i>
-        Busy / Event
-      </span>
+      <span><i class="dot" style="background:#f7b5d3"></i>Florida</span>
+      <span><i class="dot" style="background:#ffd0a2"></i>Iowa</span>
+      <span><i class="dot" style="background:#d6baf4"></i>Traveling</span>
+      <span><i class="dot" style="background:#a7e8b0"></i>Available</span>
+      <span><i class="dot" style="background:#f5a3a3"></i>Busy / Event</span>
     </div>
 
+    <p id="syncStatus" class="sync-status">Connecting to calendar...</p>
     <div id="calendar" class="calendar"></div>
   </div>
 
@@ -246,70 +174,14 @@
 </main>
 
 <script>
-const dates = {};
+const SYNC_URL =
+  "https://script.google.com/macros/s/AKfycbxK8ofdY3iyyOHhi0Adv2HUBJ79mYlM_yP-07V_2MKczlIBG5ru4QaJOpKjQZvlXImikw/exec";
 
-function addRange(start, end, type, label) {
-  let d = new Date(start + "T12:00:00");
-  const last = new Date(end + "T12:00:00");
+let shown = new Date();
+shown.setDate(1);
 
-  while (d <= last) {
-    const key = [
-      d.getFullYear(),
-      String(d.getMonth() + 1).padStart(2, "0"),
-      String(d.getDate()).padStart(2, "0")
-    ].join("-");
-
-    dates[key] = { type, label };
-    d.setDate(d.getDate() + 1);
-  }
-}
-
-// FLORIDA
-addRange(
-  "2026-10-30",
-  "2026-11-01",
-  "florida",
-  "🌴 Florida"
-);
-
-// IOWA
-addRange(
-  "2026-11-03",
-  "2026-11-03",
-  "iowa",
-  "📍 Iowa"
-);
-
-// TRAVELING — destinations are private
-addRange(
-  "2026-11-26",
-  "2026-11-30",
-  "travel",
-  "✈️ Traveling"
-);
-
-addRange(
-  "2026-12-02",
-  "2026-12-06",
-  "travel",
-  "✈️ Traveling"
-);
-
-addRange(
-  "2026-10-30",
-  "2026-10-30",
-  "travel",
-  "✈️ Traveling"
-);
-
-addRange(
-  "2026-11-02",
-  "2026-11-02",
-  "travel",
-  "✈️ Traveling"
-);
-
-let shown = new Date(2026, 9, 1);
+let days = {};
+let requestId = 0;
 
 function changeMonth(amount) {
   shown = new Date(
@@ -317,7 +189,81 @@ function changeMonth(amount) {
     shown.getMonth() + amount,
     1
   );
+  loadCalendar();
+}
+
+function loadCalendar() {
+  const year = shown.getFullYear();
+  const month = shown.getMonth() + 1;
+  const id = ++requestId;
+
+  days = {};
   render();
+
+  const status = document.getElementById("syncStatus");
+  status.textContent = "Updating calendar...";
+
+  // Apps Script returns a JavaScript callback.
+  // This avoids cross-origin fetch restrictions.
+  const previous = document.getElementById("calendarSync");
+  if (previous) previous.remove();
+
+  window.receiveLynnzeeData = function(data) {
+    if (id !== requestId) return;
+
+    if (!data || data.error || !data.days) {
+      status.textContent = "Calendar is temporarily unavailable.";
+      return;
+    }
+
+    days = data.days;
+    status.textContent = "💕 Calendar updated";
+    render();
+  };
+
+  const script = document.createElement("script");
+  script.id = "calendarSync";
+  script.src = SYNC_URL
+    + "?year=" + year
+    + "&month=" + month
+    + "&refresh=" + Date.now();
+
+  script.onerror = function() {
+    if (id === requestId) {
+      status.textContent = "Couldn't load calendar updates.";
+    }
+  };
+
+  document.body.appendChild(script);
+}
+
+function getDayInfo(key) {
+  const categories = days[key] || [];
+
+  // Travel takes priority over location.
+  let type = "";
+  let label = "";
+
+  if (categories.includes("travel")) {
+    type = "travel";
+    label = "✈️ Traveling";
+  } else if (categories.includes("florida")) {
+    type = "florida";
+    label = "🌴 Florida";
+  } else if (categories.includes("iowa")) {
+    type = "iowa";
+    label = "📍 Iowa";
+  }
+
+  // Busy takes priority over available.
+  let status = "";
+  if (categories.includes("busy")) {
+    status = "Busy";
+  } else if (categories.includes("available")) {
+    status = "Available";
+  }
+
+  return { type, label, status };
 }
 
 function render() {
@@ -333,12 +279,7 @@ function render() {
   const grid = document.getElementById("calendar");
   grid.innerHTML = "";
 
-  const weekdays = [
-    "Sun", "Mon", "Tue", "Wed",
-    "Thu", "Fri", "Sat"
-  ];
-
-  weekdays.forEach(day => {
+  ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].forEach(day => {
     const el = document.createElement("div");
     el.className = "weekday";
     el.textContent = day;
@@ -360,29 +301,36 @@ function render() {
       String(month + 1).padStart(2, "0") + "-" +
       String(day).padStart(2, "0");
 
-    const item = dates[key];
+    const info = getDayInfo(key);
     const el = document.createElement("div");
 
-    el.className = "day" +
-      (item ? " " + item.type : "");
+    el.className = "day" + (info.type ? " " + info.type : "");
 
     const num = document.createElement("div");
     num.className = "number";
     num.textContent = day;
     el.appendChild(num);
 
-    if (item) {
+    if (info.label) {
       const note = document.createElement("div");
       note.className = "note";
-      note.textContent = item.label;
+      note.textContent = info.label;
       el.appendChild(note);
+    }
+
+    if (info.status) {
+      const badge = document.createElement("div");
+      badge.className = "status " +
+        (info.status === "Busy" ? "busy" : "available");
+      badge.textContent = info.status;
+      el.appendChild(badge);
     }
 
     grid.appendChild(el);
   }
 }
 
-render();
+loadCalendar();
 </script>
 </body>
 </html>
