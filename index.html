@@ -1,0 +1,130 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Where's Lynnzee? 💕</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #fff6fa; color: #493747; font-family: Arial, sans-serif; }
+  main { max-width: 950px; margin: 35px auto; padding: 20px; }
+  h1 { text-align: center; color: #c83c82; font-size: 34px; margin-bottom: 8px; }
+  .subtitle { text-align: center; color: #806b79; margin-bottom: 25px; }
+  .panel { background: white; padding: 22px; border-radius: 22px; box-shadow: 0 6px 25px #d68aab24; }
+  .toolbar { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 20px; }
+  .toolbar h2 { margin: 0; text-align: center; font-size: 22px; }
+  button { background: #f8d5e5; border: 0; border-radius: 12px; padding: 11px 15px; cursor: pointer; color: #743b59; font-weight: bold; }
+  .legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-bottom: 22px; font-size: 13px; }
+  .legend span { display: inline-flex; align-items: center; gap: 5px; }
+  .dot { width: 13px; height: 13px; border-radius: 4px; display: inline-block; }
+  .calendar { display: grid; grid-template-columns: repeat(7, minmax(0,1fr)); gap: 6px; }
+  .weekday { text-align: center; font-size: 12px; font-weight: bold; padding: 8px 0; color: #896e7f; }
+  .day { min-height: 90px; border-radius: 10px; background: #f8f5f7; padding: 8px; font-size: 14px; overflow: hidden; }
+  .day.empty { background: transparent; }
+  .day.pensacola { background: #f7b5d3; }
+  .day.sioux { background: #ffd0a2; }
+  .day.travel { background: #d6baf4; }
+  .number { font-weight: bold; margin-bottom: 9px; }
+  .note { font-size: 11px; line-height: 1.35; }
+  .status { display: inline-block; margin-top: 6px; border-radius: 5px; padding: 3px 5px; font-size: 10px; font-weight: bold; }
+  .available { background: #a7e8b0; }
+  .busy { background: #f5a3a3; }
+  .footnote { text-align: center; font-size: 12px; color: #907f8b; margin-top: 20px; }
+  @media(max-width:600px) {
+    main { margin: 10px auto; padding: 10px; }
+    .panel { padding: 10px; }
+    h1 { font-size: 28px; }
+    .calendar { gap: 3px; }
+    .day { min-height: 72px; padding: 4px; }
+    .number { font-size: 12px; }
+    .note { font-size: 9px; overflow-wrap: anywhere; }
+    .weekday { font-size: 10px; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1>Where's Lynnzee? 💕</h1>
+  <p class="subtitle">A little peek at where I am and what I'm up to!</p>
+  <div class="panel">
+    <div class="toolbar">
+      <button onclick="changeMonth(-1)">❮ Previous</button>
+      <h2 id="monthTitle"></h2>
+      <button onclick="changeMonth(1)">Next ❯</button>
+    </div>
+    <div class="legend">
+      <span><i class="dot" style="background:#f7b5d3"></i>Pensacola</span>
+      <span><i class="dot" style="background:#ffd0a2"></i>Sioux City</span>
+      <span><i class="dot" style="background:#d6baf4"></i>Traveling</span>
+      <span><i class="dot" style="background:#a7e8b0"></i>Available</span>
+      <span><i class="dot" style="background:#f5a3a3"></i>Busy / Event</span>
+    </div>
+    <div id="calendar" class="calendar"></div>
+  </div>
+  <p class="footnote">Only dates I've shared are shown. Blank dates don't necessarily mean I'm available.</p>
+</main>
+<script>
+const dates = {};
+function addRange(start, end, type, label) {
+  let d = new Date(start + "T12:00:00");
+  const last = new Date(end + "T12:00:00");
+  while (d <= last) {
+    const key = [d.getFullYear(), String(d.getMonth()+1).padStart(2,"0"), String(d.getDate()).padStart(2,"0")].join("-");
+    dates[key] = {type, label};
+    d.setDate(d.getDate()+1);
+  }
+}
+addRange("2026-10-30","2026-11-01","pensacola","🌴 Pensacola");
+addRange("2026-11-03","2026-11-03","sioux","📍 Sioux City");
+addRange("2026-11-26","2026-11-30","travel","✈️ Washington, DC");
+addRange("2026-12-02","2026-12-06","travel","✈️ New York City");
+addRange("2026-10-30","2026-10-30","travel","✈️ Traveling");
+addRange("2026-11-02","2026-11-02","travel","✈️ Traveling");
+
+let shown = new Date(2026, 9, 1);
+function changeMonth(amount) {
+  shown = new Date(shown.getFullYear(), shown.getMonth()+amount, 1);
+  render();
+}
+function render() {
+  const year = shown.getFullYear(), month = shown.getMonth();
+  document.getElementById("monthTitle").textContent =
+    shown.toLocaleDateString("en-US",{month:"long",year:"numeric"});
+  const grid = document.getElementById("calendar");
+  grid.innerHTML = "";
+  ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].forEach(day => {
+    const el = document.createElement("div");
+    el.className = "weekday";
+    el.textContent = day;
+    grid.appendChild(el);
+  });
+  const offset = new Date(year,month,1).getDay();
+  const count = new Date(year,month+1,0).getDate();
+  for(let i=0;i<offset;i++){
+    const blank=document.createElement("div");
+    blank.className="day empty";
+    grid.appendChild(blank);
+  }
+  for(let day=1;day<=count;day++){
+    const key = year+"-"+String(month+1).padStart(2,"0")+"-"+String(day).padStart(2,"0");
+    const item=dates[key];
+    const el=document.createElement("div");
+    el.className="day"+(item?" "+item.type:"");
+    const num=document.createElement("div");
+    num.className="number";
+    num.textContent=day;
+    el.appendChild(num);
+    if(item){
+      const note=document.createElement("div");
+      note.className="note";
+      note.textContent=item.label;
+      el.appendChild(note);
+    }
+    grid.appendChild(el);
+  }
+}
+render();
+</script>
+</body>
+</html>
